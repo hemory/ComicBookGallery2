@@ -1,0 +1,47 @@
+﻿@model ComicBookGallery.Models.ComicBook
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Comic Book Details";
+    ViewBag.ShowBackBar = true;
+
+}
+
+
+
+<h2>@Model.DisplayText</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
+            <h5><label>Series Title:</label> @Model.SeriesTitle</h5>
+            <h5><label>Issue #:</label> @Model.IssueNumber</h5>
+            <h5><label>Favorite:</label> @(Model.Favorite ? "Yes" : "No")</h5>
+
+            @if (@Model.Artists.Length > 0)
+            {
+                <p>Artist:</p>
+                foreach (var artist in @Model.Artists)
+                {
+                    <li>@artist.Role: @artist.Name</li>
+                }
+
+            }
+        </div>
+        <h5>Description:</h5>
+        <div>@Html.Raw(@Model.DescriptionHTML)</div>
+    </div>
+    <div class="col-md-6">
+        <img src="/Images/@Model.CoverImageFileName"
+             alt=@Model.DisplayText class="img-responsive" />
+    </div>
+</div>
+
+
+
+
+
+
+
+
